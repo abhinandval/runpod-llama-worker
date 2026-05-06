@@ -1,0 +1,40 @@
+{
+  "title": "Gemma 4 26B MoE Serverless Worker",
+  "description": "A highly optimized Serverless LLM worker utilizing llama.cpp with Q8 KV Caching and MoE CPU Offloading.",
+  "type": "serverless",
+  "category": "language",
+  "iconUrl": "https://huggingface.co/front/assets/huggingface_logo-noborder.svg",
+  "config": {
+    "runsOn": "GPU",
+    "containerDiskInGb": 40,
+    "presets": [
+      {
+        "name": "Default Gemma 26B Q8",
+        "defaults": {
+          "MODEL_PATH": "/runpod-volume/gemma-4-26B-A4B-it-Q8_0.gguf",
+          "MODEL_URL": "https://huggingface.co/unsloth/gemma-4-26B-A4B-it-GGUF/resolve/main/gemma-4-26B-A4B-it-Q8_0.gguf"
+        }
+      }
+    ],
+    "env": [
+      {
+        "key": "MODEL_PATH",
+        "input": {
+          "name": "Model Save Path",
+          "type": "string",
+          "description": "Where the model should be stored. Use /runpod-volume/... to utilize a Network Volume.",
+          "default": "/runpod-volume/gemma-4-26B-A4B-it-Q8_0.gguf"
+        }
+      },
+      {
+        "key": "MODEL_URL",
+        "input": {
+          "name": "Model Download URL",
+          "type": "string",
+          "description": "The direct URL to the GGUF file.",
+          "default": "https://huggingface.co/unsloth/gemma-4-26B-A4B-it-GGUF/resolve/main/gemma-4-26B-A4B-it-Q8_0.gguf"
+        }
+      }
+    ]
+  }
+}
